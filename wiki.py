@@ -35,11 +35,11 @@ for site in pages:
   table = soup.find('table', class_='infobox')
   result = {}
 
-  for tr in table.find_all('tr'):
-    if tr.find('th') and tr.find('td'):
-      key = decode(tr.find('th').text)
-      value = decode(tr.find('td').text)
-      result[key] = value
+for tr in table.find_all('tr'):
+  if tr.find('th') and tr.find('td'):
+    key = decode(tr.find('th').text)
+    value = decode(tr.find('td').text)
+    result[key] = value
    
   name = site.replace('https://en.wikipedia.org/wiki/', '') 
   data[name] = result
@@ -50,14 +50,14 @@ csv = ""
 # generate a superset of possible values
 keys = []
 for entry in data:
- keys += data[entry].keys()
-keys = set(filter(None, keys)) # reduce to non empty set
+  keys += data[entry].keys()
+  keys = set(filter(None, keys)) # reduce to non empty set' ADDED TAB
 
 # header row
 header = "Target\t"
 for key in keys:
   header += key + "\t"
-csv += header + "\n"
+csv += header + "\n" #INVALID SYNTAX ERROR?
 
 # rows
 for entry in data:
